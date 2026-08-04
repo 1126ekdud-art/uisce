@@ -1,0 +1,1360 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>UISCE — 아이리시 위스키 & 코디얼 바</title>
+<meta name="description" content="위스키는 물에서 시작한다. 서울 익선동, 아이리시 팟 스틸 위스키와 자가 제조 코디얼을 다루는 바 UISCE." />
+<style>
+/* ─────────────────────────────────────────────
+   UISCE — 토큰
+   차가운 바탕(우물물·젖은 석회암·구리 녹) 위에
+   위스키(호박색)만 유일하게 따뜻한 색으로 둔다.
+   ───────────────────────────────────────────── */
+:root {
+  --bg:        #E6EAE2;
+  --bg-sunk:   #DAE0D6;
+  --bg-raise:  #F1F4EE;
+  --ink:       #0F211F;
+  --ink-2:     #435855;
+  --ink-3:     #798E89;
+  --line:      #C2CCC3;
+  --line-soft: #D4DBD2;
+  --cask:      #A2650F;
+  --cask-soft: #C08A32;
+  --verdigris: #2F6B65;
+  --glow:      0.28;
+  --shade:     0 1px 2px rgba(16,32,31,.05), 0 12px 32px -18px rgba(16,32,31,.35);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #070F11;
+    --bg-sunk:   #050B0C;
+    --bg-raise:  #0D1A1C;
+    --ink:       #E7EDE9;
+    --ink-2:     #9FB2AE;
+    --ink-3:     #677C79;
+    --line:      #1C2E31;
+    --line-soft: #142225;
+    --cask:      #DFA352;
+    --cask-soft: #F0C481;
+    --verdigris: #4F9990;
+    --glow:      0.55;
+    --shade:     0 1px 2px rgba(0,0,0,.4), 0 18px 44px -22px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"] {
+  --bg:        #070F11;
+  --bg-sunk:   #050B0C;
+  --bg-raise:  #0D1A1C;
+  --ink:       #E7EDE9;
+  --ink-2:     #9FB2AE;
+  --ink-3:     #677C79;
+  --line:      #1C2E31;
+  --line-soft: #142225;
+  --cask:      #DFA352;
+  --cask-soft: #F0C481;
+  --verdigris: #4F9990;
+  --glow:      0.55;
+  --shade:     0 1px 2px rgba(0,0,0,.4), 0 18px 44px -22px rgba(0,0,0,.8);
+}
+:root[data-theme="light"] {
+  --bg:        #E6EAE2;
+  --bg-sunk:   #DAE0D6;
+  --bg-raise:  #F1F4EE;
+  --ink:       #0F211F;
+  --ink-2:     #435855;
+  --ink-3:     #798E89;
+  --line:      #C2CCC3;
+  --line-soft: #D4DBD2;
+  --cask:      #A2650F;
+  --cask-soft: #C08A32;
+  --verdigris: #2F6B65;
+  --glow:      0.28;
+  --shade:     0 1px 2px rgba(16,32,31,.05), 0 12px 32px -18px rgba(16,32,31,.35);
+}
+
+:root {
+  --display: 'Iowan Old Style', 'Palatino Linotype', 'Hoefler Text', Palatino, Georgia,
+             'Apple Myungjo', 'Nanum Myeongjo', 'Batang', serif;
+  --body:    'Pretendard Variable', Pretendard, -apple-system, 'Apple SD Gothic Neo',
+             'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+  --data:    ui-monospace, 'SF Mono', 'JetBrains Mono', 'Roboto Mono', Menlo, monospace;
+
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --railw: 92px;
+  --measure: 34rem;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  /* 한글은 어절 단위로 끊는다 — 낱말 중간에서 줄이 넘어가지 않게 */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible {
+  outline: 2px solid var(--cask);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ── 공통 타이포 ───────────────────────────── */
+.eyebrow {
+  font-family: var(--data);
+  font-size: .68rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--verdigris);
+  margin: 0;
+}
+.h-sect {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 4.4vw, 3.1rem);
+  line-height: 1.16;
+  letter-spacing: -.015em;
+  text-wrap: balance;
+  margin: 0;
+}
+.prose {
+  max-width: var(--measure);
+  color: var(--ink-2);
+  font-size: 1.0rem;
+  margin: 0;
+}
+.prose + .prose { margin-top: 1.1em; }
+.prose strong { color: var(--ink); font-weight: 600; }
+
+/* ── 상단 바 ───────────────────────────────── */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: .85rem var(--gutter);
+  background: color-mix(in oklab, var(--bg) 82%, transparent);
+  backdrop-filter: blur(14px) saturate(1.4);
+  border-bottom: 1px solid var(--line-soft);
+}
+.topbar__mark {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  letter-spacing: .42em;
+  text-decoration: none;
+  margin-right: auto;
+  padding-left: .1em;
+}
+.topbar__nav {
+  display: flex;
+  gap: 1.4rem;
+  font-size: .85rem;
+}
+.topbar__nav a {
+  text-decoration: none;
+  color: var(--ink-2);
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+.topbar__nav a:hover { color: var(--ink); border-bottom-color: var(--cask); }
+@media (max-width: 800px) { .topbar__nav { display: none; } }
+
+.btn {
+  font-family: var(--data);
+  font-size: .72rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: .6rem 1.1rem;
+  border: 1px solid var(--cask);
+  color: var(--cask);
+  background: transparent;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+  white-space: nowrap;
+}
+.btn:hover { background: var(--cask); color: var(--bg); }
+.btn--solid { background: var(--cask); color: var(--bg); }
+.btn--solid:hover { background: transparent; color: var(--cask); }
+.btn--ghost { border-color: var(--line); color: var(--ink-2); }
+.btn--ghost:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+.theme-toggle {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-2);
+  width: 34px; height: 34px;
+  display: grid; place-items: center;
+  cursor: pointer;
+  font-size: .9rem;
+  transition: border-color .2s, color .2s;
+}
+.theme-toggle:hover { border-color: var(--cask); color: var(--cask); }
+
+/* ── 좌측 비중계 레일 ─────────────────────── */
+.rail {
+  position: fixed;
+  left: 0; top: 0;
+  width: var(--railw);
+  height: 100vh;
+  z-index: 40;
+  pointer-events: none;
+  font-family: var(--data);
+}
+.rail__stem {
+  position: absolute;
+  left: 46px; top: 12vh; bottom: 12vh;
+  width: 1px;
+  background: var(--line);
+}
+.rail__fill {
+  position: absolute;
+  left: 46px; top: 12vh;
+  width: 1px;
+  height: 0;
+  background: linear-gradient(180deg, var(--verdigris), var(--cask));
+}
+.rail__ticks {
+  position: absolute;
+  left: 38px; top: 12vh; bottom: 12vh;
+  width: 9px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.rail__ticks i { display: block; height: 1px; background: var(--line); }
+.rail__ticks i:nth-child(5n+1) { width: 9px; }
+.rail__ticks i:not(:nth-child(5n+1)) { width: 5px; margin-left: 4px; }
+.rail__label {
+  position: absolute;
+  left: 54px;
+  transform: translateY(-50%);
+  font-size: .58rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+  transition: color .3s;
+}
+.rail__label[data-on="true"] { color: var(--cask); }
+.rail__bead {
+  position: absolute;
+  left: 46px; top: 12vh;
+  width: 7px; height: 7px;
+  margin-left: -3px;
+  border-radius: 50%;
+  background: var(--cask);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--cask) 18%, transparent);
+}
+@media (max-width: 1180px) { .rail { display: none; } }
+
+/* ── 레이아웃 ──────────────────────────────── */
+.shell {
+  padding-left: 0;
+}
+@media (min-width: 1181px) {
+  .shell { padding-left: var(--railw); }
+}
+.sect {
+  padding: clamp(4.5rem, 11vh, 8rem) var(--gutter);
+  border-top: 1px solid var(--line-soft);
+}
+.sect__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+  gap: clamp(1.75rem, 5vw, 4.5rem);
+  max-width: 76rem;
+}
+@media (max-width: 900px) {
+  .sect__grid { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+.sect__aside { display: flex; flex-direction: column; gap: .7rem; }
+.sect__aside .h-sect { font-size: clamp(1.6rem, 3.6vw, 2.2rem); }
+.sect__body { display: flex; flex-direction: column; gap: 2.5rem; min-width: 0; }
+
+/* ── 히어로 ────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: min(94vh, 900px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(3rem, 10vh, 7rem) var(--gutter) clamp(2.5rem, 6vh, 4rem);
+  overflow: hidden;
+  background: var(--bg-sunk);
+  border-top: 0;
+}
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  opacity: var(--glow);
+  mix-blend-mode: screen;
+}
+:root[data-theme="light"] .hero__canvas { mix-blend-mode: multiply; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .hero__canvas { mix-blend-mode: multiply; }
+}
+.hero__veil {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(115% 78% at 18% 88%, transparent 12%, var(--bg-sunk) 82%);
+}
+.hero__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  max-width: 76rem;
+  width: 100%;
+}
+.hero__mark {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(4.5rem, 20vw, 16rem);
+  line-height: .82;
+  letter-spacing: clamp(.02em, 1.4vw, .1em);
+  margin: 0;
+  text-indent: .06em;
+}
+.hero__mark span { display: inline-block; }
+.hero__say {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .9rem;
+  font-family: var(--data);
+  font-size: .74rem;
+  letter-spacing: .18em;
+  color: var(--ink-3);
+}
+.hero__say b { color: var(--verdigris); font-weight: 400; }
+.hero__line {
+  font-family: var(--display);
+  font-size: clamp(1.35rem, 3.2vw, 2.25rem);
+  line-height: 1.35;
+  margin: 0;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+.hero__sub {
+  max-width: 40rem;
+  color: var(--ink-2);
+  margin: 0;
+  font-size: .97rem;
+}
+.hero__cta { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: .4rem; }
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  margin-top: 1.2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--data);
+  font-size: .72rem;
+  letter-spacing: .1em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+
+/* ── 지표 ──────────────────────────────────── */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 1px;
+  background: var(--line-soft);
+  border: 1px solid var(--line-soft);
+}
+.fact {
+  background: var(--bg);
+  padding: 1.1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+}
+.fact dt {
+  font-family: var(--data);
+  font-size: .62rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.fact dd {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.7rem;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+.fact dd small { font-size: .82rem; font-family: var(--body); color: var(--ink-2); }
+
+/* ── 공정 ──────────────────────────────────── */
+.steps { display: flex; flex-direction: column; }
+.step {
+  display: grid;
+  grid-template-columns: 3.2rem minmax(0, 9rem) minmax(0, 1fr);
+  gap: 1.2rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--line-soft);
+  align-items: baseline;
+}
+.step:last-child { border-bottom: 1px solid var(--line-soft); }
+.step__n {
+  font-family: var(--data);
+  font-size: .72rem;
+  color: var(--cask);
+  letter-spacing: .1em;
+  font-variant-numeric: tabular-nums;
+}
+.step__t {
+  font-family: var(--display);
+  font-size: 1.25rem;
+  margin: 0;
+  font-weight: 400;
+}
+.step__t em {
+  display: block;
+  font-family: var(--data);
+  font-style: normal;
+  font-size: .6rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: .3rem;
+}
+.step__d { margin: 0; color: var(--ink-2); font-size: .95rem; }
+@media (max-width: 760px) {
+  .step { grid-template-columns: 2.4rem minmax(0, 1fr); }
+  .step__d { grid-column: 2; }
+}
+
+/* ── 메뉴 ──────────────────────────────────── */
+.menunav {
+  position: sticky;
+  top: 57px;
+  z-index: 30;
+  display: flex;
+  gap: .4rem;
+  flex-wrap: wrap;
+  padding: .7rem 0;
+  margin-bottom: .5rem;
+  background: color-mix(in oklab, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line-soft);
+}
+.menunav a {
+  font-family: var(--data);
+  font-size: .66rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink-3);
+  padding: .35rem .7rem;
+  border: 1px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+.menunav a:hover { color: var(--cask); border-color: var(--line); }
+
+.menugroup { display: flex; flex-direction: column; gap: 1rem; scroll-margin-top: 8rem; }
+.menugroup__head {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--ink);
+}
+.menugroup__head h3 {
+  font-family: var(--display);
+  font-size: 1.45rem;
+  font-weight: 400;
+  margin: 0;
+}
+.menugroup__head p {
+  margin: 0 0 0 auto;
+  font-family: var(--data);
+  font-size: .64rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-align: right;
+}
+
+.items { display: flex; flex-direction: column; }
+.item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: .8rem;
+  row-gap: .25rem;
+  padding: 1.05rem .4rem 1.05rem 0;
+  border-bottom: 1px dashed var(--line-soft);
+  position: relative;
+}
+.item:hover { background: color-mix(in oklab, var(--cask) 6%, transparent); }
+.item__name {
+  font-size: 1.02rem;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: .55rem;
+  flex-wrap: wrap;
+}
+.item__name .ko { color: var(--ink); }
+.item__name .en {
+  font-family: var(--data);
+  font-size: .64rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 400;
+}
+.item__price {
+  font-family: var(--data);
+  font-size: .92rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  white-space: nowrap;
+  align-self: start;
+  padding-top: .12rem;
+}
+.item__desc {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--ink-2);
+  font-size: .89rem;
+  line-height: 1.65;
+  max-width: 46rem;
+}
+.tag {
+  display: inline-block;
+  font-family: var(--data);
+  font-size: .56rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .15rem .45rem;
+  border: 1px solid var(--verdigris);
+  color: var(--verdigris);
+  vertical-align: .18em;
+}
+.tag--cask { border-color: var(--cask); color: var(--cask); }
+
+/* 위스키 표 */
+.tablewrap { overflow-x: auto; }
+.pour {
+  width: 100%;
+  min-width: 44rem;
+  border-collapse: collapse;
+  font-size: .9rem;
+}
+.pour caption {
+  text-align: left;
+  font-family: var(--data);
+  font-size: .64rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding-bottom: .7rem;
+}
+.pour th {
+  text-align: left;
+  font-family: var(--data);
+  font-size: .6rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 400;
+  padding: .5rem .8rem .5rem 0;
+  border-bottom: 1px solid var(--ink);
+}
+.pour td {
+  padding: .8rem .8rem .8rem 0;
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--ink-2);
+  vertical-align: baseline;
+}
+.pour tbody tr:hover td { color: var(--ink); background: color-mix(in oklab, var(--cask) 6%, transparent); }
+.pour td.nm { color: var(--ink); font-weight: 600; }
+.pour td.num {
+  font-family: var(--data);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  padding-right: 0;
+  white-space: nowrap;
+}
+.pour th.num { text-align: right; padding-right: 0; }
+.pour tbody th[scope="rowgroup"] {
+  padding-top: 1.6rem;
+  color: var(--verdigris);
+  border-bottom-color: var(--line-soft);
+}
+
+.note {
+  font-size: .82rem;
+  color: var(--ink-3);
+  margin: 0;
+  padding-top: .4rem;
+}
+
+/* ── 공간 ──────────────────────────────────── */
+.plates {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1px;
+  background: var(--line-soft);
+  border: 1px solid var(--line-soft);
+}
+.plate {
+  background: var(--bg);
+  padding: 1.6rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+.plate h4 {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  margin: 0;
+}
+.plate p { margin: 0; color: var(--ink-2); font-size: .9rem; }
+.plate__k {
+  font-family: var(--data);
+  font-size: .6rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--cask);
+}
+
+/* ── 방문 ──────────────────────────────────── */
+.info { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 2.5rem; }
+.info dl { margin: 0; display: flex; flex-direction: column; gap: .55rem; }
+.info dt {
+  font-family: var(--data);
+  font-size: .62rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.info dd { margin: 0; font-size: .95rem; }
+.hours { display: flex; flex-direction: column; gap: .3rem; margin: 0; }
+.hours div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .35rem 0;
+  border-bottom: 1px dotted var(--line);
+  font-size: .9rem;
+}
+.hours span:last-child { font-family: var(--data); font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.hours div[data-closed] span:last-child { color: var(--ink-3); }
+.rules { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+.rules li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: .9rem;
+  color: var(--ink-2);
+}
+.rules li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: .68em;
+  width: 5px; height: 5px;
+  background: var(--verdigris);
+}
+
+/* ── 푸터 ──────────────────────────────────── */
+.foot {
+  padding: 3rem var(--gutter) 4rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-end;
+  background: var(--bg-sunk);
+}
+.foot__mark {
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 9vw, 5rem);
+  line-height: .9;
+  letter-spacing: .12em;
+  margin: 0 auto 0 0;
+  color: var(--ink);
+}
+.foot__meta {
+  font-family: var(--data);
+  font-size: .66rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.foot__meta a { text-decoration: none; }
+.foot__meta a:hover { color: var(--cask); }
+
+/* ── 등장 ──────────────────────────────────── */
+.rise { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
+.rise[data-in="true"] { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .rise { opacity: 1; transform: none; transition: none; }
+  .hero__canvas { display: none; }
+}
+
+/* ── 인쇄 ──────────────────────────────────── */
+@media print {
+  .topbar, .rail, .hero__canvas, .hero__veil, .menunav, .hero__cta, .theme-toggle { display: none !important; }
+  body { background: #fff; color: #000; }
+  .shell { padding-left: 0; }
+  .sect { padding: 1.2rem 0; break-inside: avoid; }
+  .item, .menugroup { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="topbar__mark" href="#top">UISCE</a>
+  <nav class="topbar__nav" aria-label="주요">
+    <a href="#about">소개</a>
+    <a href="#craft">만드는 방식</a>
+    <a href="#menu">메뉴</a>
+    <a href="#space">공간</a>
+    <a href="#visit">오시는 길</a>
+  </nav>
+  <button class="theme-toggle" type="button" id="themeBtn" aria-label="밝기 전환">
+    <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false">
+      <circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.2" />
+      <path d="M8 2a6 6 0 0 0 0 12z" fill="currentColor" />
+    </svg>
+  </button>
+  <a class="btn btn--solid" href="tel:+8227420180">예약 02-742-0180</a>
+</header>
+
+<div class="rail" id="rail" aria-hidden="true">
+  <div class="rail__ticks" id="railTicks"></div>
+  <div class="rail__stem"></div>
+  <div class="rail__fill" id="railFill"></div>
+  <div class="rail__bead" id="railBead"></div>
+</div>
+
+<div class="shell">
+<main id="top">
+
+  <!-- ── 히어로 ────────────────────────────── -->
+  <section class="hero" aria-labelledby="mark">
+    <canvas class="hero__canvas" id="caustics"></canvas>
+    <div class="hero__veil"></div>
+    <div class="hero__inner">
+      <p class="eyebrow">Est. 2024 · 서울 종로구 익선동</p>
+      <h1 class="hero__mark" id="mark"><span>U</span><span>I</span><span>S</span><span>C</span><span>E</span></h1>
+      <p class="hero__say">
+        <b>/ˈɪʃ.kə/ 이시커</b>
+        <span>아일랜드어로 &lsquo;물&rsquo;</span>
+        <span>아이리시 위스키 &amp; 코디얼 바</span>
+      </p>
+      <p class="hero__line">위스키는 물에서 시작한다.</p>
+      <p class="hero__sub">
+        아일랜드 사람들은 증류주를 <strong>uisce beatha</strong>, 생명의 물이라 불렀습니다.
+        영국인들이 앞의 두 음절만 따라 부르면서 그 말은 위스키가 되었고, 뒤에 남은 &lsquo;생명&rsquo;은 사라졌습니다.
+        우리는 사라진 쪽 대신 맨 앞의 물을 가게 이름으로 두기로 했습니다.
+      </p>
+      <div class="hero__cta">
+        <a class="btn" href="#menu">메뉴 보기</a>
+        <a class="btn btn--ghost" href="#visit">영업시간 · 위치</a>
+      </div>
+      <p class="hero__meta">
+        <span>화—목 18:00–01:00</span>
+        <span>금—토 18:00–02:00</span>
+        <span>일 18:00–24:00</span>
+        <span>월 휴무</span>
+        <span>16석 · 바 8석</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ── 소개 ──────────────────────────────── -->
+  <section class="sect rise" id="about" aria-labelledby="about-h">
+    <div class="sect__grid">
+      <div class="sect__aside">
+        <p class="eyebrow">01 — 소개</p>
+        <h2 class="h-sect" id="about-h">이름에 대하여</h2>
+      </div>
+      <div class="sect__body">
+        <div>
+          <p class="prose">
+            UISCE는 아이리시 팟 스틸 위스키를 중심에 둔 바입니다.
+            아일랜드 위스키는 몰트와 생보리를 함께 넣고 세 번 증류합니다.
+            그래서 스카치처럼 강하게 밀어붙이는 대신, 보리 특유의 크리미한 질감과
+            과일 향이 오래 남습니다. 조용히 이야기하기 좋은 술입니다.
+          </p>
+          <p class="prose">
+            그 성격에 맞춰 이 가게는 <strong>작고, 어둡고, 시끄럽지 않게</strong> 만들었습니다.
+            스피커는 바 뒤쪽 한 조뿐이고, 음악은 대화보다 항상 아래에 둡니다.
+            잔은 전부 손으로 닦고, 얼음은 이틀에 걸쳐 천천히 얼립니다.
+          </p>
+          <p class="prose">
+            메뉴에 적힌 재료 중 시럽과 코디얼, 인퓨전은 모두 바 안에서 만듭니다.
+            무엇을 넣었는지 전부 적어 두었으니, 궁금한 것이 있으면 바텐더에게 물어봐 주세요.
+            처음 오셨다면 &lsquo;오늘의 한 잔&rsquo;을 말씀해 주시면 취향을 물어 골라 드립니다.
+          </p>
+        </div>
+        <dl class="facts">
+          <div class="fact"><dt>Opened</dt><dd>2024</dd></div>
+          <div class="fact"><dt>Seats</dt><dd>16<small> 석 (바 8)</small></dd></div>
+          <div class="fact"><dt>Bottles</dt><dd>180<small> 종</small></dd></div>
+          <div class="fact"><dt>Irish</dt><dd>62<small> 종</small></dd></div>
+          <div class="fact"><dt>Last order</dt><dd>−60<small> 분</small></dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 공정 ──────────────────────────────── -->
+  <section class="sect rise" id="craft" aria-labelledby="craft-h">
+    <div class="sect__grid">
+      <div class="sect__aside">
+        <p class="eyebrow">02 — 만드는 방식</p>
+        <h2 class="h-sect" id="craft-h">물에서 잔까지</h2>
+        <p class="prose" style="font-size:.9rem">
+          위스키가 만들어지는 순서 그대로, 바에서 우리가 손대는 네 단계입니다.
+        </p>
+      </div>
+      <div class="sect__body">
+        <div class="steps">
+          <div class="step">
+            <span class="step__n">01</span>
+            <h3 class="step__t">물<em>Water</em></h3>
+            <p class="step__d">
+              희석에 쓰는 물은 매일 아침 거른 연수를 씁니다. 얼음은 48시간 동안 한 방향으로 천천히 얼려
+              가운데 흰 부분을 잘라 냅니다. 잔에서 30분을 버티는 얼음이 목표입니다.
+            </p>
+          </div>
+          <div class="step">
+            <span class="step__n">02</span>
+            <h3 class="step__t">보리<em>Malt</em></h3>
+            <p class="step__d">
+              보리의 성격이 남아 있는 술만 들입니다. 팟 스틸과 싱글 몰트가 리스트의 대부분이고,
+              블렌드는 칵테일에 쓸 것과 입문용 두세 종만 둡니다.
+            </p>
+          </div>
+          <div class="step">
+            <span class="step__n">03</span>
+            <h3 class="step__t">증류<em>Distill</em></h3>
+            <p class="step__d">
+              코디얼·시럽·인퓨전은 전부 바 안에서 만듭니다. 열을 넣으면 상하는 향은
+              감압 증류기로 향만 옮겨 담습니다. 시그니처 절반이 여기서 나옵니다.
+            </p>
+          </div>
+          <div class="step">
+            <span class="step__n">04</span>
+            <h3 class="step__t">숙성<em>Rest</em></h3>
+            <p class="step__d">
+              캐스크 피니시로 표시된 칵테일은 5리터 오크 배럴에서 최소 6주를 재웁니다.
+              배럴 번호와 병입일은 잔을 낼 때 함께 알려 드립니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 메뉴 ──────────────────────────────── -->
+  <section class="sect rise" id="menu" aria-labelledby="menu-h">
+    <div class="sect__grid">
+      <div class="sect__aside">
+        <p class="eyebrow">03 — 메뉴</p>
+        <h2 class="h-sect" id="menu-h">메뉴</h2>
+        <p class="prose" style="font-size:.9rem">
+          가격은 원 단위, 부가세 포함입니다.<br />
+          자리당 한 잔 이상 주문을 부탁드립니다.
+        </p>
+      </div>
+
+      <div class="sect__body">
+        <nav class="menunav" aria-label="메뉴 분류">
+          <a href="#m-signature">시그니처</a>
+          <a href="#m-pour">위스키</a>
+          <a href="#m-classic">클래식</a>
+          <a href="#m-zero">논알코올</a>
+          <a href="#m-food">안주</a>
+        </nav>
+
+        <!-- 시그니처 -->
+        <div class="menugroup" id="m-signature">
+          <div class="menugroup__head">
+            <h3>시그니처 칵테일</h3>
+            <p>Signature · 7종</p>
+          </div>
+          <div class="items">
+            <div class="item">
+              <p class="item__name"><span class="ko">우쉬케</span> <span class="en">Uisce</span></p>
+              <span class="item__price">18,000</span>
+              <p class="item__desc">싱글 팟 스틸 위스키, 자가 제조 헤더꿀 코디얼, 소금물 두 방울, 탄산. 가게 이름을 그대로 옮긴 잔입니다. 첫 모금은 물처럼 들어오고 끝에 보리가 남습니다.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">이탄</span> <span class="en">Móin</span> <span class="tag">Peat</span></p>
+              <span class="item__price">21,000</span>
+              <p class="item__desc">피트 싱글 몰트, 구운 배 퓌레, 야생화 꿀, 레몬. 연기를 과일 뒤에 숨겨 두었습니다. 피트가 처음이신 분께 권합니다.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">조수</span> <span class="en">Tide</span></p>
+              <span class="item__price">17,000</span>
+              <p class="item__desc">런던 드라이 진, 다시마 솔트, 청포도 코디얼, 드라이 베르무트. 서늘하고 짭짤합니다. 굴과 함께 드시길 권합니다.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">천사의 몫</span> <span class="en">Angel&rsquo;s Share</span> <span class="tag tag--cask">Cask 6주</span></p>
+              <span class="item__price">23,000</span>
+              <p class="item__desc">아이리시 위스키, 올로로소 셰리, 토치한 오렌지, 앙고스투라. 오크 배럴에서 6주 재운 뒤 병입합니다. 숙성 중 날아간 만큼이 이름값입니다.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">검은 물</span> <span class="en">Blackwater</span></p>
+              <span class="item__price">19,000</span>
+              <p class="item__desc">아이리시 위스키, 드라이 스타우트 리덕션, 카카오닙 인퓨전, 소금. 흑맥주를 졸여 단맛을 끌어냈습니다. 디저트 대신 마지막 잔으로.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">안개 낀 만</span> <span class="en">Fog Bay</span></p>
+              <span class="item__price">18,000</span>
+              <p class="item__desc">감압 증류한 오이 스피릿, 아이리시 블렌드, 엘더플라워, 라임. 잔 위에 안개처럼 얇은 거품을 올립니다. 가장 가볍습니다.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">난롯가</span> <span class="en">Hearth</span> <span class="tag tag--cask">Cask 8주</span></p>
+              <span class="item__price">24,000</span>
+              <p class="item__desc">싱글 몰트, 흑설탕, 정향과 시나몬 인퓨전, 버터. 따뜻하게 냅니다. 겨울에만 있습니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 위스키 -->
+        <div class="menugroup" id="m-pour">
+          <div class="menugroup__head">
+            <h3>위스키</h3>
+            <p>By the glass · 30ml</p>
+          </div>
+          <div class="tablewrap">
+            <table class="pour">
+              <caption>전체 180종 중 잔으로 내는 목록입니다. 병 단위 판매는 바텐더에게 문의해 주세요.</caption>
+              <thead>
+                <tr>
+                  <th scope="col">이름</th>
+                  <th scope="col">지역</th>
+                  <th scope="col">캐스크</th>
+                  <th scope="col" class="num">도수</th>
+                  <th scope="col" class="num">30ml</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="rowgroup" colspan="5">아일랜드 · Irish</th></tr>
+                <tr><td class="nm">레드브레스트 12년</td><td>미들턴</td><td>버번 &amp; 셰리</td><td class="num">40.0%</td><td class="num">16,000</td></tr>
+                <tr><td class="nm">그린 스팟</td><td>미들턴</td><td>버번 &amp; 셰리</td><td class="num">40.0%</td><td class="num">18,000</td></tr>
+                <tr><td class="nm">옐로 스팟 12년</td><td>미들턴</td><td>말라가 피니시</td><td class="num">46.0%</td><td class="num">26,000</td></tr>
+                <tr><td class="nm">파워스 존스 레인 12년</td><td>미들턴</td><td>버번 &amp; 셰리</td><td class="num">46.0%</td><td class="num">22,000</td></tr>
+                <tr><td class="nm">틸링 싱글 몰트</td><td>더블린</td><td>5종 와인 피니시</td><td class="num">46.0%</td><td class="num">15,000</td></tr>
+                <tr><td class="nm">부시밀스 16년</td><td>앤트림</td><td>포트 피니시</td><td class="num">40.0%</td><td class="num">24,000</td></tr>
+                <tr><td class="nm">코네마라 피티드</td><td>쿨리</td><td>버번</td><td class="num">40.0%</td><td class="num">14,000</td></tr>
+                <tr><td class="nm">미들턴 베리 레어</td><td>미들턴</td><td>버번</td><td class="num">40.0%</td><td class="num">78,000</td></tr>
+
+                <tr><th scope="rowgroup" colspan="5">스코틀랜드 · Scotch</th></tr>
+                <tr><td class="nm">아드벡 10년</td><td>아일라</td><td>버번</td><td class="num">46.0%</td><td class="num">15,000</td></tr>
+                <tr><td class="nm">라가불린 16년</td><td>아일라</td><td>셰리 &amp; 버번</td><td class="num">43.0%</td><td class="num">24,000</td></tr>
+                <tr><td class="nm">스프링뱅크 10년</td><td>캠벨타운</td><td>버번 &amp; 셰리</td><td class="num">46.0%</td><td class="num">27,000</td></tr>
+                <tr><td class="nm">탈리스커 10년</td><td>스카이</td><td>버번</td><td class="num">45.8%</td><td class="num">15,000</td></tr>
+                <tr><td class="nm">하이랜드 파크 12년</td><td>오크니</td><td>셰리</td><td class="num">40.0%</td><td class="num">15,000</td></tr>
+                <tr><td class="nm">글렌파클라스 15년</td><td>스페이사이드</td><td>올로로소 셰리</td><td class="num">46.0%</td><td class="num">21,000</td></tr>
+
+                <tr><th scope="rowgroup" colspan="5">그 밖 · Elsewhere</th></tr>
+                <tr><td class="nm">닛카 요이치</td><td>홋카이도</td><td>버번 &amp; 셰리</td><td class="num">45.0%</td><td class="num">19,000</td></tr>
+                <tr><td class="nm">카발란 솔리스트 EX</td><td>대만</td><td>버번 싱글 캐스크</td><td class="num">59.4%</td><td class="num">32,000</td></tr>
+                <tr><td class="nm">기원 세 번째 배치</td><td>남양주</td><td>버번</td><td class="num">46.0%</td><td class="num">17,000</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">
+            도수가 50%를 넘는 술은 물을 담은 잔을 함께 드립니다. 몇 방울로 향이 크게 열립니다.
+            테이스팅 플라이트(3종 × 15ml)는 <strong>28,000</strong>부터, 구성은 그날 바텐더가 짭니다.
+          </p>
+        </div>
+
+        <!-- 클래식 -->
+        <div class="menugroup" id="m-classic">
+          <div class="menugroup__head">
+            <h3>클래식</h3>
+            <p>Classic · 상시</p>
+          </div>
+          <div class="items">
+            <div class="item">
+              <p class="item__name"><span class="ko">아이리시 커피</span> <span class="en">Irish Coffee</span></p>
+              <span class="item__price">15,000</span>
+              <p class="item__desc">더블린식 그대로. 갈색 설탕, 뜨거운 커피, 위스키, 살짝만 휘핑한 생크림. 젓지 말고 크림 사이로 마셔 주세요.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">올드 패션드</span> <span class="en">Old Fashioned</span></p>
+              <span class="item__price">17,000</span>
+              <p class="item__desc">기본은 팟 스틸 위스키로 냅니다. 원하시는 술을 지정하시면 그 차액만 더합니다.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">페니실린</span> <span class="en">Penicillin</span></p>
+              <span class="item__price">18,000</span>
+              <p class="item__desc">블렌디드 스카치, 생강·꿀 시럽, 레몬, 위에 피트 몰트 한 층.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">러스티 네일</span> <span class="en">Rusty Nail</span></p>
+              <span class="item__price">17,000</span>
+              <p class="item__desc">스카치와 드람뷔, 큰 얼음 하나. 재료가 둘뿐이라 술의 상태가 그대로 보입니다.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">하이볼</span> <span class="en">Highball</span></p>
+              <span class="item__price">12,000</span>
+              <p class="item__desc">잔과 술을 얼려 두었다가 탄산을 한 번만 젓습니다. 레몬 또는 자몽 껍질 중 고르실 수 있습니다.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">그 밖의 클래식</span> <span class="en">Off the list</span></p>
+              <span class="item__price">15,000~</span>
+              <p class="item__desc">메뉴에 없는 클래식도 대부분 만들어 드립니다. 이름만 말씀해 주세요.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 논알코올 -->
+        <div class="menugroup" id="m-zero">
+          <div class="menugroup__head">
+            <h3>논알코올</h3>
+            <p>Zero proof · 알코올 0.0%</p>
+          </div>
+          <div class="items">
+            <div class="item">
+              <p class="item__name"><span class="ko">샘</span> <span class="en">Well</span></p>
+              <span class="item__price">11,000</span>
+              <p class="item__desc">감압 증류한 오이와 민트, 백포도 코디얼, 탄산. 이 가게에서 가장 물에 가까운 잔입니다.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">이탄, 술 없이</span> <span class="en">Móin N/A</span></p>
+              <span class="item__price">13,000</span>
+              <p class="item__desc">훈연한 보리차를 베이스로 시그니처 &lsquo;이탄&rsquo;을 그대로 옮겼습니다. 연기와 구운 배는 그대로입니다.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">헤더 소다</span> <span class="en">Heather Soda</span></p>
+              <span class="item__price">9,000</span>
+              <p class="item__desc">자가 제조 헤더꿀 코디얼과 탄산, 레몬 껍질.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">차</span> <span class="en">Tea</span></p>
+              <span class="item__price">7,000</span>
+              <p class="item__desc">아이리시 브렉퍼스트 또는 캐모마일. 뜨겁게 또는 차갑게.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 안주 -->
+        <div class="menugroup" id="m-food">
+          <div class="menugroup__head">
+            <h3>안주</h3>
+            <p>Bites · 라스트 오더 마감 1시간 전</p>
+          </div>
+          <div class="items">
+            <div class="item">
+              <p class="item__name"><span class="ko">소다 브레드와 버터</span> <span class="en">Soda Bread</span></p>
+              <span class="item__price">9,000</span>
+              <p class="item__desc">매일 굽는 아이리시 소다 브레드, 발효 버터, 굵은 소금.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">훈제 연어와 딜 크림</span> <span class="en">Smoked Salmon</span></p>
+              <span class="item__price">19,000</span>
+              <p class="item__desc">참나무로 훈제한 연어, 딜 사워크림, 케이퍼, 호밀 크래커.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">굴과 스타우트 미뇨네트</span> <span class="en">Oysters</span></p>
+              <span class="item__price">18,000</span>
+              <p class="item__desc">3개. 흑맥주와 샬롯으로 만든 미뇨네트. 시그니처 &lsquo;조수&rsquo;와 함께 드시길 권합니다.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">아이리시 체다와 오트 크래커</span> <span class="en">Cheese Board</span></p>
+              <span class="item__price">16,000</span>
+              <p class="item__desc">숙성 체다 두 종, 귀리 크래커, 사과 처트니, 호두.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">더블린 코들</span> <span class="en">Dublin Coddle</span></p>
+              <span class="item__price">22,000</span>
+              <p class="item__desc">소시지와 베이컨, 감자를 오래 끓인 더블린식 스튜. 소다 브레드가 함께 나옵니다. 둘이 나누기 좋습니다.</p>
+            </div>
+            <div class="item">
+              <p class="item__name"><span class="ko">소금 캐러멜 아이스크림</span> <span class="en">Salted Caramel</span></p>
+              <span class="item__price">11,000</span>
+              <p class="item__desc">위스키를 한 스푼 끼얹어 냅니다. 술을 고르실 수 있습니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 공간 ──────────────────────────────── -->
+  <section class="sect rise" id="space" aria-labelledby="space-h">
+    <div class="sect__grid">
+      <div class="sect__aside">
+        <p class="eyebrow">04 — 공간</p>
+        <h2 class="h-sect" id="space-h">열여섯 자리</h2>
+      </div>
+      <div class="sect__body">
+        <p class="prose">
+          한옥을 고쳐 만든 지하 한 층입니다. 창이 없어 낮에도 밤과 같고,
+          가장 밝은 조명이 바 위에 하나 있습니다. 자리는 모두 열여섯,
+          그중 여덟은 바 카운터입니다.
+        </p>
+        <div class="plates">
+          <div class="plate">
+            <span class="plate__k">바 카운터 · 8석</span>
+            <h4>만드는 걸 보는 자리</h4>
+            <p>혼자 오시면 여기를 권합니다. 잔이 만들어지는 과정이 다 보이고, 물어보기도 가장 편한 자리입니다.</p>
+          </div>
+          <div class="plate">
+            <span class="plate__k">테이블 · 2인 × 3</span>
+            <h4>마주 앉는 자리</h4>
+            <p>벽을 따라 놓인 2인석 세 개. 조명이 가장 낮고 소리가 잘 막힙니다.</p>
+          </div>
+          <div class="plate">
+            <span class="plate__k">안쪽 방 · 최대 4인</span>
+            <h4>문이 있는 자리</h4>
+            <p>미닫이문으로 나뉜 방 하나. 4인까지, 예약제로만 받습니다. 최소 주문 금액이 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 방문 ──────────────────────────────── -->
+  <section class="sect rise" id="visit" aria-labelledby="visit-h">
+    <div class="sect__grid">
+      <div class="sect__aside">
+        <p class="eyebrow">05 — 방문</p>
+        <h2 class="h-sect" id="visit-h">오시는 길</h2>
+      </div>
+      <div class="sect__body">
+        <div class="info">
+          <dl>
+            <dt>주소</dt>
+            <dd>서울 종로구 수표로28길 33<br />지하 1층</dd>
+            <dt>가는 방법</dt>
+            <dd>종로3가역 6번 출구에서 도보 4분.<br />간판이 작습니다. 파란 철문을 찾아 주세요.</dd>
+            <dt>예약 · 문의</dt>
+            <dd>
+              <a href="tel:+8227420180">02-742-0180</a><br />
+              <a href="https://instagram.com/uisce.seoul" rel="noreferrer">@uisce.seoul</a>
+            </dd>
+          </dl>
+
+          <div>
+            <dl>
+              <dt>영업시간</dt>
+            </dl>
+            <div class="hours">
+              <div><span>화 — 목</span><span>18:00 – 01:00</span></div>
+              <div><span>금 — 토</span><span>18:00 – 02:00</span></div>
+              <div><span>일요일</span><span>18:00 – 24:00</span></div>
+              <div data-closed><span>월요일</span><span>휴무</span></div>
+            </div>
+            <p class="note">라스트 오더는 마감 1시간 전입니다.</p>
+          </div>
+
+          <div>
+            <dl>
+              <dt>알아 두실 것</dt>
+            </dl>
+            <ul class="rules">
+              <li>예약 없이 오셔도 자리가 있으면 앉으실 수 있습니다.</li>
+              <li>바 카운터는 예약을 받지 않습니다. 오신 순서대로입니다.</li>
+              <li>안쪽 방은 예약제이며 최소 주문 금액이 있습니다.</li>
+              <li>자리당 한 잔 이상 주문을 부탁드립니다.</li>
+              <li>미성년자는 입장하실 수 없습니다. 신분증을 확인합니다.</li>
+              <li>실내 흡연은 불가하며, 반려동물은 함께 들어오실 수 없습니다.</li>
+              <li>사진은 자유롭게 찍으셔도 좋지만 플래시는 삼가 주세요.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p class="foot__mark">UISCE</p>
+  <div class="foot__meta">
+    <span>서울 종로구 수표로28길 33 B1</span>
+    <a href="tel:+8227420180">02-742-0180</a>
+    <a href="https://instagram.com/uisce.seoul" rel="noreferrer">@uisce.seoul</a>
+    <span>&copy; 2026 UISCE — 이 페이지는 디자인 시안입니다</span>
+  </div>
+</footer>
+</div>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* ── 밝기 전환 ───────────────────────────── */
+  var root = document.documentElement;
+  var btn = document.getElementById('themeBtn');
+  btn.addEventListener('click', function () {
+    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var now = root.getAttribute('data-theme') || (dark ? 'dark' : 'light');
+    root.setAttribute('data-theme', now === 'dark' ? 'light' : 'dark');
+    paintOnce();
+  });
+
+  /* ── 비중계 레일 ─────────────────────────── */
+  var ticks = document.getElementById('railTicks');
+  if (ticks) {
+    for (var t = 0; t < 41; t++) ticks.appendChild(document.createElement('i'));
+  }
+  var rail = document.getElementById('rail');
+  var fill = document.getElementById('railFill');
+  var bead = document.getElementById('railBead');
+  var marks = [
+    ['about', '소개'], ['craft', '방식'], ['menu', '메뉴'],
+    ['space', '공간'], ['visit', '방문']
+  ];
+  var labels = marks.map(function (m) {
+    var el = document.createElement('span');
+    el.className = 'rail__label';
+    el.textContent = m[1];
+    rail.appendChild(el);
+    return { el: el, id: m[0] };
+  });
+
+  function railGeom() {
+    return { top: window.innerHeight * 0.12, span: window.innerHeight * 0.76 };
+  }
+  function placeLabels() {
+    var doc = Math.max(document.body.scrollHeight - window.innerHeight, 1);
+    var g = railGeom();
+    labels.forEach(function (l) {
+      var node = document.getElementById(l.id);
+      if (!node) return;
+      var frac = Math.min(Math.max(node.offsetTop / doc, 0), 1);
+      l.el.style.top = (g.top + g.span * frac) + 'px';
+    });
+  }
+  function onScroll() {
+    var doc = Math.max(document.body.scrollHeight - window.innerHeight, 1);
+    var p = Math.min(Math.max(window.scrollY / doc, 0), 1);
+    var g = railGeom();
+    fill.style.height = (g.span * p) + 'px';
+    bead.style.transform = 'translateY(' + (g.span * p) + 'px)';
+    labels.forEach(function (l) {
+      var node = document.getElementById(l.id);
+      if (!node) return;
+      l.el.setAttribute('data-on', String(node.offsetTop / doc <= p + 0.02));
+    });
+  }
+  var queued = false;
+  function schedule() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(function () { queued = false; onScroll(); });
+  }
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', function () { placeLabels(); onScroll(); });
+  placeLabels();
+  onScroll();
+
+  /* ── 등장 ────────────────────────────────── */
+  var risers = document.querySelectorAll('.rise');
+  if ('IntersectionObserver' in window && !reduce.matches) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.setAttribute('data-in', 'true');
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -12% 0px' });
+    risers.forEach(function (n) { io.observe(n); });
+  } else {
+    risers.forEach(function (n) { n.setAttribute('data-in', 'true'); });
+  }
+
+  /* ── 히어로: 물결 코스틱 ─────────────────── */
+  var cv = document.getElementById('caustics');
+  var ctx = cv.getContext('2d', { alpha: true });
+  var W = 0, H = 0, img = null, tint = [79, 153, 144];
+  var SCALE = 3; /* 저해상도로 그리고 CSS가 확대 — 가장자리가 물처럼 번진다 */
+
+  function readTint() {
+    var c = getComputedStyle(document.documentElement).getPropertyValue('--verdigris').trim();
+    var m = c.match(/^#([0-9a-f]{6})$/i);
+    if (m) {
+      var n = parseInt(m[1], 16);
+      tint = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+    }
+  }
+  function resize() {
+    var r = cv.getBoundingClientRect();
+    W = Math.max(Math.floor(r.width / SCALE), 1);
+    H = Math.max(Math.floor(r.height / SCALE), 1);
+    cv.width = W;
+    cv.height = H;
+    img = ctx.createImageData(W, H);
+  }
+  function paint(time) {
+    if (!img) return;
+    var d = img.data, t = time * 0.00016;
+    var i = 0;
+    for (var y = 0; y < H; y++) {
+      var fy = y / H;
+      for (var x = 0; x < W; x++, i += 4) {
+        var fx = x / W;
+        /* 주기가 다른 파동을 겹쳐 간섭 무늬를 만든다 */
+        var r1 = Math.sqrt((fx - 0.28) * (fx - 0.28) + (fy - 0.86) * (fy - 0.86));
+        var r2 = Math.sqrt((fx - 0.82) * (fx - 0.82) + (fy - 0.14) * (fy - 0.14));
+        var v = Math.sin(fx * 23.0 + t * 1.7)
+              + Math.sin(fy * 19.0 - t * 1.1)
+              + Math.sin((fx + fy) * 17.0 + t * 2.3)
+              + Math.sin(r1 * 44.0 - t * 3.1)
+              + Math.sin(r2 * 31.0 + t * 2.6);
+        var k = Math.abs(v) / 5;
+        k = Math.pow(1 - k, 22);           /* 얇고 밝은 선만 남긴다 */
+        var fade = Math.pow(1 - fy, 0.55); /* 아래로 갈수록 잦아든다 */
+        var a = k * 255 * fade;
+        d[i] = tint[0];
+        d[i + 1] = tint[1];
+        d[i + 2] = tint[2];
+        d[i + 3] = a;
+      }
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+  function paintOnce() { readTint(); paint(performance.now()); }
+
+  function loop(ts) {
+    paint(ts);
+    requestAnimationFrame(loop);
+  }
+
+  if (!reduce.matches) {
+    readTint();
+    resize();
+    window.addEventListener('resize', resize);
+    requestAnimationFrame(loop);
+  }
+})();
+</script>
+</body>
+</html>
