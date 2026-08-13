@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>UISCE — 아이리시 위스키 & 코디얼 바</title>
-<meta name="description" content="위스키는 물에서 시작한다. 서울 익선동, 아이리시 팟 스틸 위스키와 자가 제조 코디얼을 다루는 바 UISCE." />
+<title>Uisce Beatha — 위스키 & 클래식 칵테일 바</title>
+<meta name="description" content="위스키는 물에서 시작한다. 위스키 181종과 클래식 칵테일을 다루는 바, Uisce Beatha." />
 <style>
 /* ─────────────────────────────────────────────
    UISCE — 토큰
@@ -324,16 +324,17 @@ a { color: inherit; }
   max-width: 76rem;
   width: 100%;
 }
+/* 두 낱말을 쌓아 두므로 한 낱말짜리 워드마크보다 작게 잡는다 */
 .hero__mark {
   font-family: var(--display);
   font-weight: 400;
-  font-size: clamp(4.5rem, 20vw, 16rem);
-  line-height: .82;
-  letter-spacing: clamp(.02em, 1.4vw, .1em);
+  font-size: clamp(2.8rem, 10.5vw, 8.5rem);
+  line-height: .92;
+  letter-spacing: .015em;
   margin: 0;
-  text-indent: .06em;
 }
-.hero__mark span { display: inline-block; }
+.hero__mark span { display: block; }
+.hero__mark br { display: none; }
 .hero__say {
   display: flex;
   flex-wrap: wrap;
@@ -732,11 +733,11 @@ a { color: inherit; }
 <body>
 
 <header class="topbar">
-  <a class="topbar__mark" href="#top">UISCE</a>
+  <a class="topbar__mark" href="#top">UISCE BEATHA</a>
   <nav class="topbar__nav" aria-label="주요">
     <a href="#about">소개</a>
     <a href="#craft">만드는 방식</a>
-    <a href="#menu">메뉴</a>
+    <a href="menu.html">메뉴판</a>
     <a href="#space">공간</a>
     <a href="#visit">오시는 길</a>
   </nav>
@@ -764,12 +765,12 @@ a { color: inherit; }
     <canvas class="hero__canvas" id="caustics"></canvas>
     <div class="hero__veil"></div>
     <div class="hero__inner">
-      <p class="eyebrow">Est. 2024 · 서울 종로구 익선동</p>
-      <h1 class="hero__mark" id="mark"><span>U</span><span>I</span><span>S</span><span>C</span><span>E</span></h1>
+      <p class="eyebrow">Since 2023 · Whiskey &amp; Classic Cocktail</p>
+      <h1 class="hero__mark" id="mark"><span>Uisce</span><br /><span>Beatha</span></h1>
       <p class="hero__say">
-        <b>/ˈɪʃ.kə/ 이시커</b>
+        <b>/ˈɪʃ.kə/ 우스케</b>
         <span>아일랜드어로 &lsquo;물&rsquo;</span>
-        <span>아이리시 위스키 &amp; 코디얼 바</span>
+        <span>위스키 &amp; 클래식 칵테일 바</span>
       </p>
       <p class="hero__line">위스키는 물에서 시작한다.</p>
       <p class="hero__sub">
@@ -778,7 +779,7 @@ a { color: inherit; }
         우리는 사라진 쪽 대신 맨 앞의 물을 가게 이름으로 두기로 했습니다.
       </p>
       <div class="hero__cta">
-        <a class="btn" href="#menu">메뉴 보기</a>
+        <a class="btn" href="menu.html">메뉴판 보기</a>
         <a class="btn btn--ghost" href="#visit">영업시간 · 위치</a>
       </div>
       <p class="hero__meta">
@@ -1157,7 +1158,7 @@ a { color: inherit; }
             <dt>예약 · 문의</dt>
             <dd>
               <a href="tel:+8227420180">02-742-0180</a><br />
-              <a href="https://instagram.com/uisce.seoul" rel="noreferrer">@uisce.seoul</a>
+              <a href="https://instagram.com/uiscebeatha_bar" rel="noreferrer">@uiscebeatha_bar</a>
             </dd>
           </dl>
 
@@ -1195,12 +1196,12 @@ a { color: inherit; }
 </main>
 
 <footer class="foot">
-  <p class="foot__mark">UISCE</p>
+  <p class="foot__mark">Uisce Beatha</p>
   <div class="foot__meta">
     <span>서울 종로구 수표로28길 33 B1</span>
     <a href="tel:+8227420180">02-742-0180</a>
-    <a href="https://instagram.com/uisce.seoul" rel="noreferrer">@uisce.seoul</a>
-    <span>&copy; 2026 UISCE — 이 페이지는 디자인 시안입니다</span>
+    <a href="https://instagram.com/uiscebeatha_bar" rel="noreferrer">@uiscebeatha_bar</a>
+    <span>&copy; 2026 Uisce Beatha — 이 페이지는 디자인 시안입니다</span>
   </div>
 </footer>
 </div>
