@@ -58,6 +58,11 @@ def signatures():
         <h2 class="h-band" id="signature-h">시그니처 칵테일</h2>
         <p class="band__note">바에서 직접 설계한 여섯 잔입니다.</p>
       </div>
+      <figure class="shot">
+        <img src="assets/hero-pour.jpg" width="900" height="1200" loading="lazy" decoding="async"
+             alt="붉은 조명이 든 백바 앞 카운터에 놓인 칵테일 한 잔." />
+        <figcaption><b>시그니처</b><span>바 카운터에서</span></figcaption>
+      </figure>
       <div class="sigs">{''.join(cards)}</div>
     </section>"""
 
@@ -135,6 +140,11 @@ def pours():
           하이볼로 변경 시 10,000원이 추가됩니다.
         </p>
       </div>
+      <figure class="shot">
+        <img src="assets/backbar.jpg" width="1125" height="1500" loading="lazy" decoding="async"
+             alt="붉게 백라이트를 넣은 선반마다 위스키 병이 줄지어 선 백바." />
+        <figcaption><b>백바</b><span>여기 있는 술을 잔으로 냅니다</span></figcaption>
+      </figure>
       <div class="grps grps--tight">{''.join(groups)}</div>
     </section>"""
 
@@ -158,6 +168,11 @@ def courses():
         <h2 class="h-band" id="course-h">테이스팅 코스</h2>
         <p class="band__note">세 잔을 각 15ml씩 나란히 냅니다. 비교하며 마시기 위한 구성입니다.</p>
       </div>
+      <figure class="shot">
+        <img src="assets/flight.jpg" width="1600" height="1200" loading="lazy" decoding="async"
+             alt="나무 받침에 나란히 놓인 위스키 플라이트 네 잔과 곁들임 치즈 보드." />
+        <figcaption><b>플라이트</b><span>나란히 놓고 비교합니다</span></figcaption>
+      </figure>
       <div class="courses">{''.join(cards)}</div>
     </section>"""
 
@@ -511,6 +526,25 @@ a { color: inherit; }
 .band__note { margin: 0; color: var(--ink-2); font-size: .9rem; max-width: 42rem; }
 .band__note strong { color: var(--ink); font-weight: 600; }
 
+/* ── 사진 ─────────────────────────────────── */
+/* 메뉴판에서 사진은 거들 뿐 — 목록을 밀어내지 않게 폭을 묶는다 */
+.shot { margin: 0 0 2rem; max-width: 40rem; display: flex; flex-direction: column; gap: .55rem; }
+.shot img {
+  width: 100%; height: auto; display: block;
+  aspect-ratio: 16 / 9; object-fit: cover;
+  border: 1px solid var(--line);
+  background: var(--bg-sunk);
+}
+.shot figcaption {
+  font-family: var(--data);
+  font-size: .62rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  display: flex; flex-wrap: wrap; gap: .2rem .7rem;
+}
+.shot figcaption b { color: var(--verdigris); font-weight: 400; }
+
 /* ── 시그니처 ─────────────────────────────── */
 .sigs {
   display: grid;
@@ -757,7 +791,7 @@ body[data-empty="true"] .empty { display: block; }
 
 /* ── 인쇄 ─────────────────────────────────── */
 @media print {
-  .bar, .theme-toggle { display: none !important; }
+  .bar, .theme-toggle, .shot { display: none !important; }
   body { background: #fff; color: #000; font-size: 10.5pt; }
   .cover, .band--info, .foot { background: #fff; }
   .band { padding: .8rem 0; max-width: none; }
