@@ -174,6 +174,13 @@ a { color: inherit; }
 }
 .topbar__nav a:hover { color: var(--ink); border-bottom-color: var(--cask); }
 @media (max-width: 800px) { .topbar__nav { display: none; } }
+/* 좁은 화면에서는 워드마크와 전화 버튼이 한 줄에 함께 들어가야 한다 */
+@media (max-width: 560px) {
+  .topbar { gap: .55rem; padding-inline: 1rem; }
+  .topbar__mark { font-size: .78rem; letter-spacing: .16em; }
+  .topbar .btn { padding: .5rem .6rem; font-size: .6rem; letter-spacing: .06em; }
+  .theme-toggle { width: 30px; height: 30px; }
+}
 
 .btn {
   font-family: var(--data);
@@ -736,9 +743,8 @@ a { color: inherit; }
   <a class="topbar__mark" href="#top">UISCE BEATHA</a>
   <nav class="topbar__nav" aria-label="주요">
     <a href="#about">소개</a>
-    <a href="#craft">만드는 방식</a>
+    <a href="#how">즐기는 법</a>
     <a href="menu.html">메뉴판</a>
-    <a href="#space">공간</a>
     <a href="#visit">오시는 길</a>
   </nav>
   <button class="theme-toggle" type="button" id="themeBtn" aria-label="밝기 전환">
@@ -747,7 +753,7 @@ a { color: inherit; }
       <path d="M8 2a6 6 0 0 0 0 12z" fill="currentColor" />
     </svg>
   </button>
-  <a class="btn btn--solid" href="tel:+8227420180">예약 02-742-0180</a>
+  <a class="btn btn--solid" href="tel:0507-1463-5602">전화 0507-1463-5602</a>
 </header>
 
 <div class="rail" id="rail" aria-hidden="true">
@@ -765,29 +771,28 @@ a { color: inherit; }
     <canvas class="hero__canvas" id="caustics"></canvas>
     <div class="hero__veil"></div>
     <div class="hero__inner">
-      <p class="eyebrow">Since 2023 · Whiskey &amp; Classic Cocktail</p>
-      <h1 class="hero__mark" id="mark"><span>Uisce</span><br /><span>Beatha</span></h1>
+      <p class="eyebrow">Since 2023 · 인천 청라</p>
+      <h1 class="hero__mark" id="mark"><span>Uisce</span><span>Beatha</span></h1>
       <p class="hero__say">
-        <b>/ˈɪʃ.kə/ 우스케</b>
-        <span>아일랜드어로 &lsquo;물&rsquo;</span>
-        <span>위스키 &amp; 클래식 칵테일 바</span>
+        <b>우스케바</b>
+        <span>아일랜드어로 &lsquo;생명의 물&rsquo;</span>
+        <span>Whiskey &amp; Classic Cocktail</span>
       </p>
-      <p class="hero__line">위스키는 물에서 시작한다.</p>
+      <p class="hero__line">클래식의 품격.</p>
       <p class="hero__sub">
         아일랜드 사람들은 증류주를 <strong>uisce beatha</strong>, 생명의 물이라 불렀습니다.
         영국인들이 앞의 두 음절만 따라 부르면서 그 말은 위스키가 되었고, 뒤에 남은 &lsquo;생명&rsquo;은 사라졌습니다.
-        우리는 사라진 쪽 대신 맨 앞의 물을 가게 이름으로 두기로 했습니다.
+        우리는 그 온전한 이름을 그대로 간판에 걸었습니다.
       </p>
       <div class="hero__cta">
         <a class="btn" href="menu.html">메뉴판 보기</a>
-        <a class="btn btn--ghost" href="#visit">영업시간 · 위치</a>
+        <a class="btn btn--ghost" href="#visit">영업시간 · 오시는 길</a>
       </div>
       <p class="hero__meta">
-        <span>화—목 18:00–01:00</span>
-        <span>금—토 18:00–02:00</span>
-        <span>일 18:00–24:00</span>
-        <span>월 휴무</span>
-        <span>16석 · 바 8석</span>
+        <span>일—목 19:00–02:00</span>
+        <span>금·토 19:00–03:00</span>
+        <span>연중무휴</span>
+        <span>위스키 181종</span>
       </p>
     </div>
   </section>
@@ -797,80 +802,79 @@ a { color: inherit; }
     <div class="sect__grid">
       <div class="sect__aside">
         <p class="eyebrow">01 — 소개</p>
-        <h2 class="h-sect" id="about-h">이름에 대하여</h2>
+        <h2 class="h-sect" id="about-h">첫 잔이<br />가장 중요합니다</h2>
       </div>
       <div class="sect__body">
         <div>
           <p class="prose">
-            UISCE는 아이리시 팟 스틸 위스키를 중심에 둔 바입니다.
-            아일랜드 위스키는 몰트와 생보리를 함께 넣고 세 번 증류합니다.
-            그래서 스카치처럼 강하게 밀어붙이는 대신, 보리 특유의 크리미한 질감과
-            과일 향이 오래 남습니다. 조용히 이야기하기 좋은 술입니다.
+            우스케바는 위스키와 클래식 칵테일을 다루는 바입니다.
+            청라 리버프라자 1층, 커널웨이를 따라 걷다 보면 나오는 자리에 있습니다.
           </p>
           <p class="prose">
-            그 성격에 맞춰 이 가게는 <strong>작고, 어둡고, 시끄럽지 않게</strong> 만들었습니다.
-            스피커는 바 뒤쪽 한 조뿐이고, 음악은 대화보다 항상 아래에 둡니다.
-            잔은 전부 손으로 닦고, 얼음은 이틀에 걸쳐 천천히 얼립니다.
+            잔으로 내는 위스키만 <strong>181종</strong>입니다. 스페이사이드와 하이랜드부터
+            아일라와 캠벨타운, 아메리칸과 재패니즈, 인디펜던트 보틀링까지 열여섯 갈래로 나눠 두었습니다.
+            여기에 직접 설계한 시그니처 여섯 잔과, 기주별로 정리한 클래식 칵테일이 있습니다.
           </p>
           <p class="prose">
-            메뉴에 적힌 재료 중 시럽과 코디얼, 인퓨전은 모두 바 안에서 만듭니다.
-            무엇을 넣었는지 전부 적어 두었으니, 궁금한 것이 있으면 바텐더에게 물어봐 주세요.
-            처음 오셨다면 &lsquo;오늘의 한 잔&rsquo;을 말씀해 주시면 취향을 물어 골라 드립니다.
+            목록이 길다고 부담 갖지 않으셔도 됩니다.
+            <strong>바텐더에게 묻는 걸 어려워하지 않으셔도 됩니다.</strong>
+            어떤 맛을 좋아하는지, 오늘 기분이 어떤지만 말씀해 주시면 거기서부터 골라 드립니다.
+            주문과 요청 시에는 손만 살짝 들어주세요.
           </p>
         </div>
         <dl class="facts">
-          <div class="fact"><dt>Opened</dt><dd>2024</dd></div>
-          <div class="fact"><dt>Seats</dt><dd>16<small> 석 (바 8)</small></dd></div>
-          <div class="fact"><dt>Bottles</dt><dd>180<small> 종</small></dd></div>
-          <div class="fact"><dt>Irish</dt><dd>62<small> 종</small></dd></div>
-          <div class="fact"><dt>Last order</dt><dd>−60<small> 분</small></dd></div>
+          <div class="fact"><dt>Since</dt><dd>2023</dd></div>
+          <div class="fact"><dt>위스키</dt><dd>181<small> 종</small></dd></div>
+          <div class="fact"><dt>시그니처</dt><dd>6<small> 잔</small></dd></div>
+          <div class="fact"><dt>테이스팅 코스</dt><dd>6<small> 종</small></dd></div>
+          <div class="fact"><dt>휴무</dt><dd>없음<small> 연중무휴</small></dd></div>
         </dl>
       </div>
     </div>
   </section>
 
-  <!-- ── 공정 ──────────────────────────────── -->
-  <section class="sect rise" id="craft" aria-labelledby="craft-h">
+  <!-- ── 즐기는 법 ─────────────────────────── -->
+  <section class="sect rise" id="how" aria-labelledby="how-h">
     <div class="sect__grid">
       <div class="sect__aside">
-        <p class="eyebrow">02 — 만드는 방식</p>
-        <h2 class="h-sect" id="craft-h">물에서 잔까지</h2>
+        <p class="eyebrow">02 — 즐기는 법</p>
+        <h2 class="h-sect" id="how-h">고르는 순서</h2>
         <p class="prose" style="font-size:.9rem">
-          위스키가 만들어지는 순서 그대로, 바에서 우리가 손대는 네 단계입니다.
+          처음 오셨다면 이 순서대로 가 보시면 됩니다.
         </p>
       </div>
       <div class="sect__body">
         <div class="steps">
           <div class="step">
             <span class="step__n">01</span>
-            <h3 class="step__t">물<em>Water</em></h3>
+            <h3 class="step__t">한 잔 물어보기<em>Ask first</em></h3>
             <p class="step__d">
-              희석에 쓰는 물은 매일 아침 거른 연수를 씁니다. 얼음은 48시간 동안 한 방향으로 천천히 얼려
-              가운데 흰 부분을 잘라 냅니다. 잔에서 30분을 버티는 얼음이 목표입니다.
+              메뉴에 없는 클래식도 대부분 만들어 드립니다. 이름을 모르셔도 됩니다.
+              달게, 산뜻하게, 묵직하게 — 그 정도만 말씀해 주시면 됩니다.
             </p>
           </div>
           <div class="step">
             <span class="step__n">02</span>
-            <h3 class="step__t">보리<em>Malt</em></h3>
+            <h3 class="step__t">나란히 비교하기<em>Tasting course</em></h3>
             <p class="step__d">
-              보리의 성격이 남아 있는 술만 들입니다. 팟 스틸과 싱글 몰트가 리스트의 대부분이고,
-              블렌드는 칵테일에 쓸 것과 입문용 두세 종만 둡니다.
+              테이스팅 코스는 세 잔을 각 15ml씩 함께 냅니다. 인도, 피트, 단맛, 캠벨타운, 아시아 등
+              여섯 가지 주제로 짜 두었습니다. 한 병을 고르기 전에 결을 확인하기 좋습니다.
             </p>
           </div>
           <div class="step">
             <span class="step__n">03</span>
-            <h3 class="step__t">증류<em>Distill</em></h3>
+            <h3 class="step__t">반 잔으로 맛보기<em>Half pour</em></h3>
             <p class="step__d">
-              코디얼·시럽·인퓨전은 전부 바 안에서 만듭니다. 열을 넣으면 상하는 향은
-              감압 증류기로 향만 옮겨 담습니다. 시그니처 절반이 여기서 나옵니다.
+              4만원 이상 위스키는 <strong>하프(15ml)</strong>로 드실 수 있습니다. 정가의 60% 가격입니다.
+              비싼 술을 한 잔 다 비우기 부담스러울 때 쓰시면 됩니다.
             </p>
           </div>
           <div class="step">
             <span class="step__n">04</span>
-            <h3 class="step__t">숙성<em>Rest</em></h3>
+            <h3 class="step__t">하이볼로 바꾸기<em>Highball</em></h3>
             <p class="step__d">
-              캐스크 피니시로 표시된 칵테일은 5리터 오크 배럴에서 최소 6주를 재웁니다.
-              배럴 번호와 병입일은 잔을 낼 때 함께 알려 드립니다.
+              어떤 위스키든 하이볼로 변경하실 수 있습니다. 10,000원이 추가됩니다.
+              진은 원하시는 것으로 바꾸실 수 있고, 진토닉으로 변경 시 3,000원이 추가됩니다.
             </p>
           </div>
         </div>
@@ -885,256 +889,119 @@ a { color: inherit; }
         <p class="eyebrow">03 — 메뉴</p>
         <h2 class="h-sect" id="menu-h">메뉴</h2>
         <p class="prose" style="font-size:.9rem">
-          가격은 원 단위, 부가세 포함입니다.<br />
-          자리당 한 잔 이상 주문을 부탁드립니다.
+          전체 목록은 메뉴판에서 보실 수 있습니다.<br />
+          술 이름으로 찾을 수 있습니다.
+        </p>
+        <p style="margin-top:.4rem">
+          <a class="btn" href="menu.html">메뉴판 전체 보기</a>
         </p>
       </div>
 
       <div class="sect__body">
-        <nav class="menunav" aria-label="메뉴 분류">
-          <a href="#m-signature">시그니처</a>
-          <a href="#m-pour">위스키</a>
-          <a href="#m-classic">클래식</a>
-          <a href="#m-zero">논알코올</a>
-          <a href="#m-food">안주</a>
-        </nav>
-
-        <!-- 시그니처 -->
-        <div class="menugroup" id="m-signature">
+        <div class="menugroup">
           <div class="menugroup__head">
             <h3>시그니처 칵테일</h3>
-            <p>Signature · 7종</p>
+            <p>Signature · 6종</p>
           </div>
           <div class="items">
             <div class="item">
-              <p class="item__name"><span class="ko">우쉬케</span> <span class="en">Uisce</span></p>
-              <span class="item__price">18,000</span>
-              <p class="item__desc">싱글 팟 스틸 위스키, 자가 제조 헤더꿀 코디얼, 소금물 두 방울, 탄산. 가게 이름을 그대로 옮긴 잔입니다. 첫 모금은 물처럼 들어오고 끝에 보리가 남습니다.</p>
+              <p class="item__name"><span class="ko">카카오 벨벳</span> <span class="en">Cacao Velvet</span></p>
+              <span class="item__price">25,000</span>
+              <p class="item__desc">브랜디, 화이트 &amp; 다크 카카오, 생크림, 코코넛 워터, 시나몬. 코코넛 워터가 깔끔하게 마무리해주는 디저트 스타일 칵테일. Alc. 18–20%</p>
             </div>
             <div class="item">
-              <p class="item__name"><span class="ko">이탄</span> <span class="en">Móin</span> <span class="tag">Peat</span></p>
-              <span class="item__price">21,000</span>
-              <p class="item__desc">피트 싱글 몰트, 구운 배 퓌레, 야생화 꿀, 레몬. 연기를 과일 뒤에 숨겨 두었습니다. 피트가 처음이신 분께 권합니다.</p>
+              <p class="item__name"><span class="ko">율무 곡주 穀酒</span> <span class="en">Yulmu Gokju</span></p>
+              <span class="item__price">25,000</span>
+              <p class="item__desc">율무를 인퓨징한 한국 증류주, 아몬드 밀크, 조청, 소금, 구운 아몬드. 겨울의 따뜻함을 담은 잔. Alc. 10–12%</p>
             </div>
             <div class="item">
-              <p class="item__name"><span class="ko">조수</span> <span class="en">Tide</span></p>
-              <span class="item__price">17,000</span>
-              <p class="item__desc">런던 드라이 진, 다시마 솔트, 청포도 코디얼, 드라이 베르무트. 서늘하고 짭짤합니다. 굴과 함께 드시길 권합니다.</p>
+              <p class="item__name"><span class="ko">크렘 브륄레 위스키 사워</span> <span class="en">Crème Brûlée Whisky Sour</span></p>
+              <span class="item__price">25,000</span>
+              <p class="item__desc">바닐라빈을 인퓨징한 글렌리벳, 레몬, 크렘 드 카카오, 생크림, 통계란. 크렘 브륄레를 연상시키는 디저트 스타일 사워. Alc. 16–18%</p>
             </div>
             <div class="item">
-              <p class="item__name"><span class="ko">천사의 몫</span> <span class="en">Angel&rsquo;s Share</span> <span class="tag tag--cask">Cask 6주</span></p>
-              <span class="item__price">23,000</span>
-              <p class="item__desc">아이리시 위스키, 올로로소 셰리, 토치한 오렌지, 앙고스투라. 오크 배럴에서 6주 재운 뒤 병입합니다. 숙성 중 날아간 만큼이 이름값입니다.</p>
+              <p class="item__name"><span class="ko">망고 오! 망고</span> <span class="en">Mango OH! Mango</span></p>
+              <span class="item__price">20,000</span>
+              <p class="item__desc">보드카, 망고티, 소다, 레몬, 민트, 망고 젤리. 상큼함과 청량감을 더한 하이볼. Alc. 8–10%</p>
             </div>
             <div class="item">
-              <p class="item__name"><span class="ko">검은 물</span> <span class="en">Blackwater</span></p>
+              <p class="item__name"><span class="ko">복분자 요거트</span> <span class="en">Bokbunja Yogurt</span></p>
               <span class="item__price">19,000</span>
-              <p class="item__desc">아이리시 위스키, 드라이 스타우트 리덕션, 카카오닙 인퓨전, 소금. 흑맥주를 졸여 단맛을 끌어냈습니다. 디저트 대신 마지막 잔으로.</p>
+              <p class="item__desc">복분자, 레몬, 우유, 요거트 파우더, 베리. 진한 풍미에 요거트의 부드러움을 더한 새콤달콤한 잔. Alc. 8–10%</p>
             </div>
             <div class="item">
-              <p class="item__name"><span class="ko">안개 낀 만</span> <span class="en">Fog Bay</span></p>
+              <p class="item__name"><span class="ko">피치 밀키</span> <span class="en">Peach Milky</span></p>
               <span class="item__price">18,000</span>
-              <p class="item__desc">감압 증류한 오이 스피릿, 아이리시 블렌드, 엘더플라워, 라임. 잔 위에 안개처럼 얇은 거품을 올립니다. 가장 가볍습니다.</p>
-            </div>
-            <div class="item">
-              <p class="item__name"><span class="ko">난롯가</span> <span class="en">Hearth</span> <span class="tag tag--cask">Cask 8주</span></p>
-              <span class="item__price">24,000</span>
-              <p class="item__desc">싱글 몰트, 흑설탕, 정향과 시나몬 인퓨전, 버터. 따뜻하게 냅니다. 겨울에만 있습니다.</p>
+              <p class="item__desc">보드카, 피치트리, 우유, 레몬. 레몬의 산미로 균형을 잡은 요거트 같은 칵테일. Alc. 10–12%</p>
             </div>
           </div>
         </div>
 
-        <!-- 위스키 -->
-        <div class="menugroup" id="m-pour">
+        <div class="menugroup">
           <div class="menugroup__head">
-            <h3>위스키</h3>
-            <p>By the glass · 30ml</p>
-          </div>
-          <div class="tablewrap">
-            <table class="pour">
-              <caption>전체 180종 중 잔으로 내는 목록입니다. 병 단위 판매는 바텐더에게 문의해 주세요.</caption>
-              <thead>
-                <tr>
-                  <th scope="col">이름</th>
-                  <th scope="col">지역</th>
-                  <th scope="col">캐스크</th>
-                  <th scope="col" class="num">도수</th>
-                  <th scope="col" class="num">30ml</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><th scope="rowgroup" colspan="5">아일랜드 · Irish</th></tr>
-                <tr><td class="nm">레드브레스트 12년</td><td>미들턴</td><td>버번 &amp; 셰리</td><td class="num">40.0%</td><td class="num">16,000</td></tr>
-                <tr><td class="nm">그린 스팟</td><td>미들턴</td><td>버번 &amp; 셰리</td><td class="num">40.0%</td><td class="num">18,000</td></tr>
-                <tr><td class="nm">옐로 스팟 12년</td><td>미들턴</td><td>말라가 피니시</td><td class="num">46.0%</td><td class="num">26,000</td></tr>
-                <tr><td class="nm">파워스 존스 레인 12년</td><td>미들턴</td><td>버번 &amp; 셰리</td><td class="num">46.0%</td><td class="num">22,000</td></tr>
-                <tr><td class="nm">틸링 싱글 몰트</td><td>더블린</td><td>5종 와인 피니시</td><td class="num">46.0%</td><td class="num">15,000</td></tr>
-                <tr><td class="nm">부시밀스 16년</td><td>앤트림</td><td>포트 피니시</td><td class="num">40.0%</td><td class="num">24,000</td></tr>
-                <tr><td class="nm">코네마라 피티드</td><td>쿨리</td><td>버번</td><td class="num">40.0%</td><td class="num">14,000</td></tr>
-                <tr><td class="nm">미들턴 베리 레어</td><td>미들턴</td><td>버번</td><td class="num">40.0%</td><td class="num">78,000</td></tr>
-
-                <tr><th scope="rowgroup" colspan="5">스코틀랜드 · Scotch</th></tr>
-                <tr><td class="nm">아드벡 10년</td><td>아일라</td><td>버번</td><td class="num">46.0%</td><td class="num">15,000</td></tr>
-                <tr><td class="nm">라가불린 16년</td><td>아일라</td><td>셰리 &amp; 버번</td><td class="num">43.0%</td><td class="num">24,000</td></tr>
-                <tr><td class="nm">스프링뱅크 10년</td><td>캠벨타운</td><td>버번 &amp; 셰리</td><td class="num">46.0%</td><td class="num">27,000</td></tr>
-                <tr><td class="nm">탈리스커 10년</td><td>스카이</td><td>버번</td><td class="num">45.8%</td><td class="num">15,000</td></tr>
-                <tr><td class="nm">하이랜드 파크 12년</td><td>오크니</td><td>셰리</td><td class="num">40.0%</td><td class="num">15,000</td></tr>
-                <tr><td class="nm">글렌파클라스 15년</td><td>스페이사이드</td><td>올로로소 셰리</td><td class="num">46.0%</td><td class="num">21,000</td></tr>
-
-                <tr><th scope="rowgroup" colspan="5">그 밖 · Elsewhere</th></tr>
-                <tr><td class="nm">닛카 요이치</td><td>홋카이도</td><td>버번 &amp; 셰리</td><td class="num">45.0%</td><td class="num">19,000</td></tr>
-                <tr><td class="nm">카발란 솔리스트 EX</td><td>대만</td><td>버번 싱글 캐스크</td><td class="num">59.4%</td><td class="num">32,000</td></tr>
-                <tr><td class="nm">기원 세 번째 배치</td><td>남양주</td><td>버번</td><td class="num">46.0%</td><td class="num">17,000</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="note">
-            도수가 50%를 넘는 술은 물을 담은 잔을 함께 드립니다. 몇 방울로 향이 크게 열립니다.
-            테이스팅 플라이트(3종 × 15ml)는 <strong>28,000</strong>부터, 구성은 그날 바텐더가 짭니다.
-          </p>
-        </div>
-
-        <!-- 클래식 -->
-        <div class="menugroup" id="m-classic">
-          <div class="menugroup__head">
-            <h3>클래식</h3>
-            <p>Classic · 상시</p>
+            <h3>테이스팅 코스</h3>
+            <p>각 15ml × 3잔</p>
           </div>
           <div class="items">
             <div class="item">
-              <p class="item__name"><span class="ko">아이리시 커피</span> <span class="en">Irish Coffee</span></p>
-              <span class="item__price">15,000</span>
-              <p class="item__desc">더블린식 그대로. 갈색 설탕, 뜨거운 커피, 위스키, 살짝만 휘핑한 생크림. 젓지 말고 크림 사이로 마셔 주세요.</p>
+              <p class="item__name"><span class="ko">인도</span> <span class="en">No. 01 Indian</span></p>
+              <span class="item__price">45,000</span>
+              <p class="item__desc">암룻 퓨전 · 폴 존 PX · 폴 존 올로로소. 스코틀랜드 밖에도 위스키가 있다는 것을 확인하는 코스.</p>
             </div>
             <div class="item">
-              <p class="item__name"><span class="ko">올드 패션드</span> <span class="en">Old Fashioned</span></p>
-              <span class="item__price">17,000</span>
-              <p class="item__desc">기본은 팟 스틸 위스키로 냅니다. 원하시는 술을 지정하시면 그 차액만 더합니다.</p>
+              <p class="item__name"><span class="ko">피트</span> <span class="en">No. 02 Peat</span></p>
+              <span class="item__price">38,000</span>
+              <p class="item__desc">아드벡 언 오 · 킬호만 사닉 · 라프로익 셀렉트. 스모키가 무엇인지 궁금하셨던 분을 위한 아일라 입문 코스.</p>
             </div>
             <div class="item">
-              <p class="item__name"><span class="ko">페니실린</span> <span class="en">Penicillin</span></p>
-              <span class="item__price">18,000</span>
-              <p class="item__desc">블렌디드 스카치, 생강·꿀 시럽, 레몬, 위에 피트 몰트 한 층.</p>
+              <p class="item__name"><span class="ko">피트 몬스터</span> <span class="en">No. 03 The Peat Monster</span></p>
+              <span class="item__price">99,000</span>
+              <p class="item__desc">아드벡 트라이 반 19Y · 라그 배치 · 옥토모어 15.3. 피트의 끝까지 가보고 싶은 분을 위한 코스.</p>
             </div>
             <div class="item">
-              <p class="item__name"><span class="ko">러스티 네일</span> <span class="en">Rusty Nail</span></p>
-              <span class="item__price">17,000</span>
-              <p class="item__desc">스카치와 드람뷔, 큰 얼음 하나. 재료가 둘뿐이라 술의 상태가 그대로 보입니다.</p>
+              <p class="item__name"><span class="ko">단맛</span> <span class="en">No. 04 Sweet</span></p>
+              <span class="item__price">50,000</span>
+              <p class="item__desc">글렌알라키 12Y 모스카텔 · 글렌모렌지 퀸타 루반 · 아란 포트 캐스크. 와인 캐스크가 만들어내는 단맛의 결을 비교합니다.</p>
             </div>
             <div class="item">
-              <p class="item__name"><span class="ko">하이볼</span> <span class="en">Highball</span></p>
-              <span class="item__price">12,000</span>
-              <p class="item__desc">잔과 술을 얼려 두었다가 탄산을 한 번만 젓습니다. 레몬 또는 자몽 껍질 중 고르실 수 있습니다.</p>
+              <p class="item__name"><span class="ko">캠벨타운</span> <span class="en">No. 05 Campbeltown</span></p>
+              <span class="item__price">69,000</span>
+              <p class="item__desc">스프링뱅크 100 프루프 5Y · 롱로우 피티드 · 킬커란 12Y. 세 증류소를 나란히 비교하는, 국내에서도 흔치 않은 코스.</p>
             </div>
             <div class="item">
-              <p class="item__name"><span class="ko">그 밖의 클래식</span> <span class="en">Off the list</span></p>
-              <span class="item__price">15,000~</span>
-              <p class="item__desc">메뉴에 없는 클래식도 대부분 만들어 드립니다. 이름만 말씀해 주세요.</p>
+              <p class="item__name"><span class="ko">아시아</span> <span class="en">No. 06 Asia</span></p>
+              <span class="item__price">52,000</span>
+              <p class="item__desc">제기 · 카발란 올로로소 셰리 오크 · 닛카 미야기쿄. 한국·대만·일본 위스키의 차이를 확인합니다.</p>
             </div>
           </div>
         </div>
 
-        <!-- 논알코올 -->
-        <div class="menugroup" id="m-zero">
+        <div class="menugroup">
           <div class="menugroup__head">
-            <h3>논알코올</h3>
-            <p>Zero proof · 알코올 0.0%</p>
+            <h3>그 밖에</h3>
+            <p>메뉴판에서 이어 보기</p>
           </div>
-          <div class="items">
-            <div class="item">
-              <p class="item__name"><span class="ko">샘</span> <span class="en">Well</span></p>
-              <span class="item__price">11,000</span>
-              <p class="item__desc">감압 증류한 오이와 민트, 백포도 코디얼, 탄산. 이 가게에서 가장 물에 가까운 잔입니다.</p>
+          <div class="plates">
+            <div class="plate">
+              <span class="plate__k">위스키 · 181종</span>
+              <h4>잔으로 내는 술</h4>
+              <p>30ml과 60ml 두 가지. 스페이사이드부터 인디펜던트 보틀링까지 열여섯 갈래.</p>
             </div>
-            <div class="item">
-              <p class="item__name"><span class="ko">이탄, 술 없이</span> <span class="en">Móin N/A</span></p>
-              <span class="item__price">13,000</span>
-              <p class="item__desc">훈연한 보리차를 베이스로 시그니처 &lsquo;이탄&rsquo;을 그대로 옮겼습니다. 연기와 구운 배는 그대로입니다.</p>
+            <div class="plate">
+              <span class="plate__k">클래식 칵테일 · 44종</span>
+              <h4>기주별로</h4>
+              <p>진, 보드카, 럼, 칼바도스, 위스키, 브랜디, 리큐르, 아페롤, 커피.</p>
             </div>
-            <div class="item">
-              <p class="item__name"><span class="ko">헤더 소다</span> <span class="en">Heather Soda</span></p>
-              <span class="item__price">9,000</span>
-              <p class="item__desc">자가 제조 헤더꿀 코디얼과 탄산, 레몬 껍질.</p>
+            <div class="plate">
+              <span class="plate__k">안주 · 맥주 · 시드르</span>
+              <h4>잔의 순서에 맞춰</h4>
+              <p>첫 잔과 함께, 잔이 비워질 즈음, 마지막 한 잔. 기네스 생맥주와 노르망디 시드르도 있습니다.</p>
             </div>
-            <div class="item">
-              <p class="item__name"><span class="ko">차</span> <span class="en">Tea</span></p>
-              <span class="item__price">7,000</span>
-              <p class="item__desc">아이리시 브렉퍼스트 또는 캐모마일. 뜨겁게 또는 차갑게.</p>
+            <div class="plate">
+              <span class="plate__k">보틀 · 키핑</span>
+              <h4>병으로 두고 가기</h4>
+              <p>15종. 키핑 기간은 1개월, 키핑 차지는 1인 10,000원입니다.</p>
             </div>
-          </div>
-        </div>
-
-        <!-- 안주 -->
-        <div class="menugroup" id="m-food">
-          <div class="menugroup__head">
-            <h3>안주</h3>
-            <p>Bites · 라스트 오더 마감 1시간 전</p>
-          </div>
-          <div class="items">
-            <div class="item">
-              <p class="item__name"><span class="ko">소다 브레드와 버터</span> <span class="en">Soda Bread</span></p>
-              <span class="item__price">9,000</span>
-              <p class="item__desc">매일 굽는 아이리시 소다 브레드, 발효 버터, 굵은 소금.</p>
-            </div>
-            <div class="item">
-              <p class="item__name"><span class="ko">훈제 연어와 딜 크림</span> <span class="en">Smoked Salmon</span></p>
-              <span class="item__price">19,000</span>
-              <p class="item__desc">참나무로 훈제한 연어, 딜 사워크림, 케이퍼, 호밀 크래커.</p>
-            </div>
-            <div class="item">
-              <p class="item__name"><span class="ko">굴과 스타우트 미뇨네트</span> <span class="en">Oysters</span></p>
-              <span class="item__price">18,000</span>
-              <p class="item__desc">3개. 흑맥주와 샬롯으로 만든 미뇨네트. 시그니처 &lsquo;조수&rsquo;와 함께 드시길 권합니다.</p>
-            </div>
-            <div class="item">
-              <p class="item__name"><span class="ko">아이리시 체다와 오트 크래커</span> <span class="en">Cheese Board</span></p>
-              <span class="item__price">16,000</span>
-              <p class="item__desc">숙성 체다 두 종, 귀리 크래커, 사과 처트니, 호두.</p>
-            </div>
-            <div class="item">
-              <p class="item__name"><span class="ko">더블린 코들</span> <span class="en">Dublin Coddle</span></p>
-              <span class="item__price">22,000</span>
-              <p class="item__desc">소시지와 베이컨, 감자를 오래 끓인 더블린식 스튜. 소다 브레드가 함께 나옵니다. 둘이 나누기 좋습니다.</p>
-            </div>
-            <div class="item">
-              <p class="item__name"><span class="ko">소금 캐러멜 아이스크림</span> <span class="en">Salted Caramel</span></p>
-              <span class="item__price">11,000</span>
-              <p class="item__desc">위스키를 한 스푼 끼얹어 냅니다. 술을 고르실 수 있습니다.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 공간 ──────────────────────────────── -->
-  <section class="sect rise" id="space" aria-labelledby="space-h">
-    <div class="sect__grid">
-      <div class="sect__aside">
-        <p class="eyebrow">04 — 공간</p>
-        <h2 class="h-sect" id="space-h">열여섯 자리</h2>
-      </div>
-      <div class="sect__body">
-        <p class="prose">
-          한옥을 고쳐 만든 지하 한 층입니다. 창이 없어 낮에도 밤과 같고,
-          가장 밝은 조명이 바 위에 하나 있습니다. 자리는 모두 열여섯,
-          그중 여덟은 바 카운터입니다.
-        </p>
-        <div class="plates">
-          <div class="plate">
-            <span class="plate__k">바 카운터 · 8석</span>
-            <h4>만드는 걸 보는 자리</h4>
-            <p>혼자 오시면 여기를 권합니다. 잔이 만들어지는 과정이 다 보이고, 물어보기도 가장 편한 자리입니다.</p>
-          </div>
-          <div class="plate">
-            <span class="plate__k">테이블 · 2인 × 3</span>
-            <h4>마주 앉는 자리</h4>
-            <p>벽을 따라 놓인 2인석 세 개. 조명이 가장 낮고 소리가 잘 막힙니다.</p>
-          </div>
-          <div class="plate">
-            <span class="plate__k">안쪽 방 · 최대 4인</span>
-            <h4>문이 있는 자리</h4>
-            <p>미닫이문으로 나뉜 방 하나. 4인까지, 예약제로만 받습니다. 최소 주문 금액이 있습니다.</p>
           </div>
         </div>
       </div>
@@ -1145,20 +1012,24 @@ a { color: inherit; }
   <section class="sect rise" id="visit" aria-labelledby="visit-h">
     <div class="sect__grid">
       <div class="sect__aside">
-        <p class="eyebrow">05 — 방문</p>
+        <p class="eyebrow">04 — 방문</p>
         <h2 class="h-sect" id="visit-h">오시는 길</h2>
       </div>
       <div class="sect__body">
         <div class="info">
           <dl>
             <dt>주소</dt>
-            <dd>서울 종로구 수표로28길 33<br />지하 1층</dd>
-            <dt>가는 방법</dt>
-            <dd>종로3가역 6번 출구에서 도보 4분.<br />간판이 작습니다. 파란 철문을 찾아 주세요.</dd>
-            <dt>예약 · 문의</dt>
             <dd>
-              <a href="tel:+8227420180">02-742-0180</a><br />
-              <a href="https://instagram.com/uiscebeatha_bar" rel="noreferrer">@uiscebeatha_bar</a>
+              인천 서구 중봉대로586번길 9-19<br />
+              (청라동) 리버프라자 1층 우스케바
+            </dd>
+            <dt>찾는 표시</dt>
+            <dd>카페인중독과 글램클럽 사이에 있습니다.</dd>
+            <dt>연락</dt>
+            <dd>
+              <a href="tel:0507-1463-5602">0507-1463-5602</a><br />
+              <a href="https://instagram.com/uiscebeatha_bar" rel="noreferrer">@uiscebeatha_bar</a><br />
+              <a href="https://blog.naver.com/usicebeatha" rel="noreferrer">blog.naver.com/usicebeatha</a>
             </dd>
           </dl>
 
@@ -1167,26 +1038,38 @@ a { color: inherit; }
               <dt>영업시간</dt>
             </dl>
             <div class="hours">
-              <div><span>화 — 목</span><span>18:00 – 01:00</span></div>
-              <div><span>금 — 토</span><span>18:00 – 02:00</span></div>
-              <div><span>일요일</span><span>18:00 – 24:00</span></div>
-              <div data-closed><span>월요일</span><span>휴무</span></div>
+              <div><span>일 — 목</span><span>19:00 – 02:00</span></div>
+              <div><span>금 · 토</span><span>19:00 – 03:00</span></div>
+              <div><span>휴무</span><span>연중무휴</span></div>
             </div>
-            <p class="note">라스트 오더는 마감 1시간 전입니다.</p>
+            <p class="note">매일 저녁 7시에 문을 엽니다.</p>
+
+            <dl style="margin-top:1.6rem">
+              <dt>주차</dt>
+            </dl>
+            <p class="note" style="color:var(--ink-2)">
+              <strong>청라 리버프라자</strong>에 주차하시면 됩니다. 기본 2시간 제공됩니다.<br />
+              위치 · 주차 문의 <a href="tel:010-4250-5596">010-4250-5596</a>
+            </p>
           </div>
 
           <div>
             <dl>
+              <dt>가는 방법</dt>
+            </dl>
+            <ul class="rules">
+              <li><strong>지하철 + 버스</strong> — 인천공항철도 청라국제도시역 1번 출구에서 904번 버스 탑승, 청라1동 주민센터 정류장 하차 후 도보 1분.</li>
+              <li><strong>도보</strong> — 청라 커널웨이를 따라 리버프라자 1층으로 오시면 됩니다.</li>
+              <li><strong>차량</strong> — 내비게이션에 &lsquo;우스케바&rsquo; 또는 &lsquo;청라 리버프라자&rsquo;를 찍으시면 됩니다.</li>
+            </ul>
+
+            <dl style="margin-top:1.6rem">
               <dt>알아 두실 것</dt>
             </dl>
             <ul class="rules">
-              <li>예약 없이 오셔도 자리가 있으면 앉으실 수 있습니다.</li>
-              <li>바 카운터는 예약을 받지 않습니다. 오신 순서대로입니다.</li>
-              <li>안쪽 방은 예약제이며 최소 주문 금액이 있습니다.</li>
-              <li>자리당 한 잔 이상 주문을 부탁드립니다.</li>
-              <li>미성년자는 입장하실 수 없습니다. 신분증을 확인합니다.</li>
-              <li>실내 흡연은 불가하며, 반려동물은 함께 들어오실 수 없습니다.</li>
-              <li>사진은 자유롭게 찍으셔도 좋지만 플래시는 삼가 주세요.</li>
+              <li>콜키지는 와인 1병 100,000원, 증류주 1병 150,000원입니다.</li>
+              <li>10만원 이상 결제, 테이스팅 코스 이용, 이 주의 위스키 2바틀 이상 주문 시 쿠폰 도장을 적립해 드립니다.</li>
+              <li>도장 5개, 10개를 모으면 칵테일 한 잔을 드립니다.</li>
             </ul>
           </div>
         </div>
@@ -1198,10 +1081,10 @@ a { color: inherit; }
 <footer class="foot">
   <p class="foot__mark">Uisce Beatha</p>
   <div class="foot__meta">
-    <span>서울 종로구 수표로28길 33 B1</span>
-    <a href="tel:+8227420180">02-742-0180</a>
+    <span>인천 서구 중봉대로586번길 9-19 리버프라자 1층</span>
+    <a href="tel:0507-1463-5602">0507-1463-5602</a>
     <a href="https://instagram.com/uiscebeatha_bar" rel="noreferrer">@uiscebeatha_bar</a>
-    <span>&copy; 2026 Uisce Beatha — 이 페이지는 디자인 시안입니다</span>
+    <span>&copy; 2026 우스케바 — 이 페이지는 디자인 시안입니다</span>
   </div>
 </footer>
 </div>
@@ -1229,8 +1112,7 @@ a { color: inherit; }
   var fill = document.getElementById('railFill');
   var bead = document.getElementById('railBead');
   var marks = [
-    ['about', '소개'], ['craft', '방식'], ['menu', '메뉴'],
-    ['space', '공간'], ['visit', '방문']
+    ['about', '소개'], ['how', '순서'], ['menu', '메뉴'], ['visit', '방문']
   ];
   var labels = marks.map(function (m) {
     var el = document.createElement('span');
